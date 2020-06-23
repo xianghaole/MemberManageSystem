@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<!--侧边栏-->
+<nav class="navbar-default navbar-side" role="navigation" th:fragment="cebianlan">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <li>
+                <a class="active-menu waves-effect waves-dark" th:href="@{/}"><i class="fa fa-dashboard"></i>
+                    首页</a>
+            </li>
+            <!--会员管理栏-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-user"></i>会员管理<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="@{/addMember}">添加会员</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/queryMember}">查询会员</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/memberGrade}">会员等级管理</a>
+                    </li>
+                    <li>
+                        <a th:href="@{/modifyMemberState}">会员状态修改</a>
+                    </li>
+
+                    <li>
+                        <a href="#">会员消费<span class="fa arrow"></span></a>
+                        <ul class="nav nav-third-level">
+                            <li>
+                                <a th:href="@{/integralExchange}">积分兑换</a>
+                            </li>
+                            <li>
+                                <a th:href="@{/balanceRecharge}">余额充值</a>
+                            </li>
+                        </ul>
+
+                    </li>
+
+                    <li>
+                        <a th:href="@{/deleteMember}">会员注销</a>
+                    </li>
+                </ul>
+            </li>
+            <!--礼品栏-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-gift"></i>礼品消费<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="@{/setGift}">新增礼品</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/modifyGiftNumber}">礼品列表</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/exchangeRecord}">兑换记录</a>
+                    </li>
+                </ul>
+            </li>
+            <!--商品消费-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-usd"></i>商品管理<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="@{/addCommodity}">添加商品</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/modifyCommodity}">商品列表</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/purchaseCommodity}">商品购买</a>
+                    </li>
+
+                    <li>
+                        <a th:href="@{/transactionRecord}">消费记录</a>
+                    </li>
+                </ul>
+            </li>
+<!--积分管理-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-paperclip"></i>积分管理<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+
+
+                    <li>
+                        <a href="#" th:href="@{/integral}">积分列表</a>
+                    </li>
+
+
+                </ul>
+            </li>
+            <!--公告管理-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-folder-open"></i>公告管理<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="" th:href="@{/toAddNotice}">发表公告</a>
+                    </li>
+
+                    <li>
+                        <a href="" th:href="@{/queryAllNotice}">公告列表</a>
+                    </li>
+                </ul>
+            </li>
+            <!--信息通知-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-send"></i>信息通知<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+
+                    <li>
+                        <a href="#" th:href="@{/queryMessage}">通知列表</a>
+                    </li>
+                </ul>
+            </li>
+            <!--报表统计-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-stats"></i>报表统计<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#" th:href="@{/toCountEchart}">会员等级人数统计</a>
+                    </li>
+
+                    <!--<li>-->
+                        <!--<a href="#">商品总数</a>-->
+                    <!--</li>-->
+                </ul>
+            </li>
+            <!--<li>-->
+                <!--<a class="waves-effect waves-dark" th:href="@{/birthdayWarning}"><i class="fa fa-birthday-cake"></i>-->
+                    <!--生日提醒</a>-->
+            <!--</li>-->
+
+            <li>
+                <a class="waves-effect waves-dark" th:href="@{/integralLottery}"><i class="glyphicon glyphicon-star"></i>
+                    积分抽奖</a>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+<!--导航栏信息-->
+<nav class="navbar navbar-default top-navbar" role="navigation" th:fragment="navBar">
+    <div class="navbar-header">
+        <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+                data-target=".sidebar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand waves-effect waves-dark" th:href="@{/}">
+            <strong>乐钊会员管理系统</strong></a>
+
+        <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+    </div>
+    <!--用户登录信息-->
+    <ul class="nav navbar-top-links navbar-right">
+
+        <li><a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1"> <b th:unless="${session.member == null}" th:text="${session.member.username}"></b> <i
+                class="material-icons right">arrow_drop_down</i></a></li>
+    </ul>
+</nav>
+<!--用户登录栏的具体信息-->
+<ul id="dropdown1" class="dropdown-content" th:fragment="loginInfo">
+    <li><a th:href="@{/myAccount}"><i class="fa fa-user fa-fw"></i>我的账户</a>
+    </li>
+    <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+    </li>
+</ul>
+</body>
+</html>

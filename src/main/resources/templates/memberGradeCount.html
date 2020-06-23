@@ -1,0 +1,128 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <script src="assets/js/jquery-1.10.2.js"></script>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+
+<div id="wrapper">
+    <div th:replace="common/bar::navBar"></div>
+    <!--用户登录栏的具体信息-->
+    <div th:replace="common/bar::loginInfo"></div>
+    <!--侧边栏-->
+    <div th:replace="common/bar::cebianlan"></div>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                乐钊会员管理系统欢迎您
+            </h1>
+        </div>
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-content">
+                    <div id="container" style="height: 460px"></div>
+                    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/echarts/dist/echarts.min.js"></script>
+                    <script type="text/javascript">
+                       $.get("/loadCountEchart",function (data) {
+                           var dom = document.getElementById("container");
+                           var myChart = echarts.init(dom);
+                           var app = {};
+                           option = null;
+                           option = {
+                               title: {
+                                   text: '乐钊会员管理系统会员等级人数统计',
+                                   subtext: '真实有效',
+                                   left: 'center'
+                               },
+                               tooltip: {
+                                   trigger: 'item',
+                                   formatter: '{a} <br/>{b} : {c} ({d}%)'
+                               },
+                               legend: {
+                                   orient: 'vertical',
+                                   left: 'left',
+                                   data: data
+                               },
+                               series: [
+                                   {
+                                       name: '会员等级人数(占比)',
+                                       type: 'pie',
+                                       radius: '55%',
+                                       center: ['50%', '60%'],
+                                       data: data,
+                                       emphasis: {
+                                           itemStyle: {
+                                               shadowBlur: 10,
+                                               shadowOffsetX: 0,
+                                               shadowColor: 'rgba(0, 0, 0, 0.5)'
+                                           }
+                                       }
+                                   }
+                               ]
+                           };
+                           ;
+                           if (option && typeof option === "object") {
+                               myChart.setOption(option, true);
+                           }
+                       })
+                    </script>
+
+                </div>
+                <div class="card-action">
+                </div>
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+        </div>
+
+    </div>
+</div>
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>

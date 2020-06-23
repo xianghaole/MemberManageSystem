@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<nav class="navbar-default navbar-side" role="navigation" th:fragment="nav">
+    <div class="sidebar-collapse">
+        <ul class="nav" id="main-menu">
+
+            <!--个人中心-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-user"></i>个人中心<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="@{/me}">我的信息</a>
+                    </li>
+                    <li>
+                        <a href="#" th:href="@{/updatePassword}">修改密码</a>
+                    </li>
+                </ul>
+            </li>
+            <!--购物商城-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-yen"></i>购物商城<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="@{/commodityList}">商品列表</a>
+                    </li>
+
+                    <li>
+                        <a href="#" th:href="@{/history}">历史订单</a>
+                    </li>
+                </ul>
+            </li>
+            <!--积分兑换-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="fa fa-gift"></i>积分兑换<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#" th:href="@{/giftList}">礼品列表</a>
+                    </li>
+
+                    <li>
+                        <a href="#" th:href="@{/exchangeRecordWithFront}">兑换记录</a>
+                    </li>
+                </ul>
+            </li>
+            <!--公告-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="
+glyphicon glyphicon-bookmark"></i>公告列表<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a href="#" th:href="@{/queryNotice}">查看公告</a>
+                    </li>
+                </ul>
+            </li>
+
+            <!--留言-->
+            <li>
+                <a href="javascript:void(0)" class="waves-effect waves-dark"><i class="glyphicon glyphicon-send"></i>我的留言<span
+                        class="fa arrow"></span></a>
+                <ul class="nav nav-second-level">
+                    <li>
+                        <a th:href="@{/message}">发表留言</a>
+                    </li>
+                </ul>
+            </li>
+        </ul>
+
+    </div>
+
+</nav>
+</body>
+</html>

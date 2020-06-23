@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+
+<div id="wrapper">
+    <div th:replace="common/bar::navBar"></div>
+    <!--用户登录栏的具体信息-->
+    <div th:replace="common/bar::loginInfo"></div>
+    <!--侧边栏-->
+    <div th:replace="common/bar::cebianlan"></div>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                添加成功
+            </h1>
+        </div>
+        <div id="page-inner">
+            <!--自定义内容-->
+            <!--<div class="container">-->
+            <div class="card">
+                <div class="card-content">
+
+
+                    <div class="row">
+                        <div class="col s6">
+                            <img id="myimg" th:src="${member.iconPath}" class="img-responsive img-thumbnail"/>
+                        </div>
+                        <div class="col s6">
+                            <p>用户名：<span class="blue-text text-darken-2" th:text="${member.memberName}"></span></p>
+                            <p>联系电话：<span class="blue-text text-darken-2" th:text="${member.phone}"></span></p>
+                            <p>邮箱：<span class="blue-text text-darken-2" th:text="${member.email}"></span></p>
+                            <p>性别：<span class="blue-text text-darken-2" th:text="${member.sex}"></span></p>
+                            <p>会员生日：<span class="blue-text text-darken-2" th:text="${member.birthday}"></span></p>
+                            <p>会员等级：<span class="blue-text text-darken-2" th:text="${member.memberGrade.gradeName}"></span></p>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-action">
+                    <a target="_blank" href="http://www.cnblogs.com/lger/">我的博客</a>
+                    <a target="_blank" th:href="@{/}">首页</a>
+                </div>
+                <!--</div>-->
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+        </div>
+
+    </div>
+</div>
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script>
+
+    $.ajax({
+        type: "get",
+        url: '/getGrade',
+        dataTyp: 'json',
+        success: function (data) {
+            var inputState = $('#inputState');
+            inputState.html('');
+            $.each(data, function (index, content) {
+                inputState.html(inputState.html() + "<option id='" + content.id + "'>" + content.gradeName + "</option>");
+            });
+        }
+    });
+</script>
+</body>
+
+</html>

@@ -1,0 +1,127 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+
+<div id="wrapper">
+    <nav class="navbar navbar-default top-navbar" role="navigation">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle waves-effect waves-dark" data-toggle="collapse"
+                    data-target=".sidebar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand waves-effect waves-dark" th:href="@{/index_member}">
+                <strong>乐钊会员管理系统</strong></a>
+
+            <div id="sideNav" href=""><i class="material-icons dp48">toc</i></div>
+        </div>
+        <!--用户登录信息-->
+        <ul class="nav navbar-top-links navbar-right" style="position: relative">
+            <button type="button" class="btn btn-success" style="position: absolute;left: -119px;top:13px"
+            th:text="${session.member.memberGrade.gradeName}" th:class="${session.member.memberGrade.gradeName=='普通会员'}?'btn btn-success':(${session.member.memberGrade.gradeName=='高级会员'}?'btn btn-info':'btn btn-warning')"
+            >
+
+            </button>
+
+            <img th:src="@{${session.member.iconPath}}" width="42" height="42"
+                 style="border-radius: 50%;position: absolute;left: -26px;top:9px">
+
+            <li>
+                <a class="dropdown-button waves-effect waves-dark" href="#" data-activates="dropdown1">
+                    <b
+                        th:unless="${session.member == null}" th:text="${session.member.memberName}">
+
+                    </b>
+                    <i
+                        class="material-icons right">arrow_drop_down
+                    </i>
+                </a>
+            </li>
+        </ul>
+    </nav>
+    <!--用户登录栏的具体信息-->
+    <ul id="dropdown1" class="dropdown-content">
+
+        <li><a th:href="@{/me}"><i class="fa fa-user fa-fw"></i>我的账户</a>
+        </li>
+        <li><a th:href="@{/logout}"><i class="fa fa-sign-out fa-fw"></i>退出登录</a>
+        </li>
+    </ul>
+    <!--侧边栏-->
+    <div th:replace="common/member/nav::nav"></div>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                乐钊会员管理系统欢迎您
+            </h1>
+        </div>
+        <div id="page-inner">
+            <div class="card">
+                <div class="card-content">
+                    <span class="card-title">乐钊会员管理系统</span>
+                    <p>会员管理系统（Member management
+                        system），是指企业用于对会员进行有效管理的IT系统。通过会员管理系统，企业就可以记录所有会员客户的资料，了解用户的兴趣爱好、消费特点、意向需求
+                        等；同时针对客户的需求，为其提供优质的个性化服务；会员管理系统还能为企业的产品开发、事业发展提供可靠的市场调研数据，是企业经营不可或缺的一个有利工具。</p>
+                </div>
+
+            </div>
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+
+</body>
+
+</html>

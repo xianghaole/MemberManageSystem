@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+
+<head>
+
+    <meta charset="utf-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Home</title>
+
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet"/>
+    <link rel="stylesheet" href="assets/materialize/css/materialize.min.css" media="screen,projection"/>
+    <!-- Bootstrap Styles-->
+    <link href="assets/css/bootstrap.css" rel="stylesheet"/>
+    <!-- FontAwesome Styles-->
+    <link href="assets/css/font-awesome.css" rel="stylesheet"/>
+    <!-- Morris Chart Styles-->
+    <link href="assets/js/morris/morris-0.4.3.min.css" rel="stylesheet"/>
+    <!-- Custom Styles-->
+    <link href="assets/css/custom-styles.css" rel="stylesheet"/>
+    <!--&lt;!&ndash; Google Fonts&ndash;&gt;-->
+    <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans' rel='stylesheet' type='text/css'/>-->
+    <!--<link rel="stylesheet" href="assets/js/Lightweight-Chart/cssCharts.css">-->
+</head>
+
+<body>
+
+<div id="wrapper">
+    <div th:replace="common/bar::navBar"></div>
+    <!--用户登录栏的具体信息-->
+    <div th:replace="common/bar::loginInfo"></div>
+    <!--侧边栏-->
+    <div th:replace="common/bar::cebianlan"></div>
+    <!--内容主体-->
+    <div id="page-wrapper">
+        <!--内容主题-->
+        <div class="header">
+            <h1 class="page-header">
+                积分抽奖
+            </h1>
+        </div>
+        <div id="page-inner">
+            <!--自定义内容-->
+            <!--<div class="container">-->
+            <div class="card">
+                <form action="#" onsubmit="return integralLottery()">
+                    <div class="card-content">
+                        <div class="row">
+                            <div class="input-field col s6">
+                                <input placeholder="抽奖总积分" id="allIntegral" type="text" class="validate"
+                                       name="allIntegral" required/>
+                                <label for="allIntegral">抽奖积分</label>
+                            </div>
+                            <div class="input-field col s6">
+                                <span id="memberId" class="text-danger"></span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="card-action">
+                        <button type="submit" class="waves-effect waves-light btn">开始随机分配</button>
+                    </div>
+                </form>
+                <!--</div>-->
+            </div>
+
+            <!--页脚-->
+            <br>
+            <br>
+            <br>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- JS Scripts-->
+<!-- jQuery Js -->
+<script src="assets/js/jquery-1.10.2.js"></script>
+
+<!-- Bootstrap Js -->
+<script src="assets/js/bootstrap.min.js"></script>
+
+<script src="assets/materialize/js/materialize.min.js"></script>
+
+<!-- Metis Menu Js -->
+<script src="assets/js/jquery.metisMenu.js"></script>
+
+<script src="assets/js/easypiechart.js"></script>
+<script src="assets/js/easypiechart-data.js"></script>
+
+<script src="assets/js/Lightweight-Chart/jquery.chart.js"></script>
+
+<!-- Custom Js -->
+<script src="assets/js/custom-scripts.js"></script>
+
+<script>
+
+    function integralLottery() {
+        var reg = /^\d+$/;
+        var memberId = $('#memberId');
+        var obj1 = document.getElementById('allIntegral');
+        if (!reg.test(obj1.value)) {
+            if (obj1.value === '') {
+                obj1.setAttribute('class', 'validate invalid');
+                return false;
+            }
+            obj1.setAttribute('class', 'validate invalid');
+            alert('输入积分不符合要求');
+            return false;
+        }
+        $.ajax({
+            url:'/integralLottery',
+            type:'POST',
+            data:{allIntegral:obj1.value},
+            dataTpe:'JSON',
+            success:function (data) {
+                if (data === ''){
+                    alert('分配失败，请重试');
+                    memberId.text('');
+                }else {
+                    memberId.text('该账号-'+data.id+'的用户得到了 '+obj1.value+'积分');
+                }
+            }
+        });
+        return false;
+    }
+
+</script>
+</body>
+
+</html>
